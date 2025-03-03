@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    options {
+        timeout(time: 30, unit: 'MINUTES')  // Pipeline timeout
+    }
+
+    environment {
+        GIT_REPO = "https://github.com/sathyapathi/devops-project-capstone.git"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    echo "Cloning the repository..."
+                    git branch: 'main', url: "${GIT_REPO}"
+                }
+            }
+        }
+		
+		stage('Build Selenium App') {
+			echo "Build Selenium Package"
+			sh 'mvn clean package'
+		}
+			
+		stage('Execute Selenium Testscript') {
+			echo "Execute Selenium Testscript"
+			sh 'java -jar target/InsureMeTest-0.0.1-SNAPSHOT.jar'
+		}
+    }
+
+    post {
+        success {
+            echo "Pipeline completed successfully!"
+        }
+        failure {
+            echo "Pipeline failed. Please check the logs."
+        }
+    }
+}

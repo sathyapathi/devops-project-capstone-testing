@@ -28,7 +28,9 @@ public class InsureMeTest {
 
         try {
             // Open the URL
-            driver.get("http://54.86.207.129:8080/contact.html");
+            // driver.get("http://54.86.207.129:8080/contact.html");
+            driver.get("http://172.31.81.101:8080/contact.html");
+
 
             // Fill the form
             driver.findElement(By.id("inputName")).sendKeys("NewName");
@@ -61,3 +63,5 @@ public class InsureMeTest {
         }
     }
 }
+
+ 
