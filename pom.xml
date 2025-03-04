@@ -72,6 +72,9 @@
     </dependencies>
 
     <build>
+    
+        <finalName>insure-me-test-1.0</finalName>
+        
         <plugins>
             <!-- Compiler Plugin -->
             <plugin>
