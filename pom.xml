@@ -55,7 +55,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -84,6 +83,16 @@
                 <configuration>
                     <source>17</source>
                     <target>17</target>
+                </configuration>
+            </plugin>
+
+            <!-- Maven JAR Plugin to force correct JAR name -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <finalName>insure-me-test-1.0</finalName>
                 </configuration>
             </plugin>
 

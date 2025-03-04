@@ -10,6 +10,14 @@ pipeline {
     }
 
     stages {
+        stage('Cleanup Workspace') {
+            steps {
+                echo "Cleaning workspace before build..."
+                sh 'git clean -fdx'  // Remove untracked files and directories
+                sh 'rm -rf target/'  // Remove old build artifacts
+            }
+        }
+
         stage('Checkout') {
             steps {
                 script {
@@ -18,18 +26,25 @@ pipeline {
                 }
             }
         }
-		
+
         stage('Build Selenium App') {
             steps {
                 echo "Building the Selenium Package..."
                 sh 'mvn clean package'
             }
         }
-			
+
+        stage('Verify Artifact') {
+            steps {
+                echo "Checking if the correct JAR file was created..."
+                sh 'ls -l target/'
+            }
+        }
+
         stage('Execute Selenium Testscript') {
             steps {
                 echo "Executing Selenium Testscript..."
-                sh 'java -jar target/insure-me-test.1.0.jar'
+                sh 'java -jar target/insure-me-test-1.0.jar'
             }
         }
     }
