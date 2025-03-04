@@ -21,14 +21,14 @@ pipeline {
 		
         stage('Build Selenium App') {
             steps {
-                echo "Build Selenium Package"
+                echo "Building the Selenium Package..."
                 sh 'mvn clean package'
             }
         }
 			
         stage('Execute Selenium Testscript') {
             steps {
-                echo "Execute Selenium Testscript"
+                echo "Executing Selenium Testscript..."
                 sh 'java -jar target/InsureMeTest-0.0.1-SNAPSHOT.jar'
             }
         }
